@@ -6,10 +6,11 @@ import { useSettings } from "@/lib/settings";
 
 /** Modal for the per-user Resend API key + sender identity. */
 export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { settings, update, isConfigured } = useSettings();
+  const { settings, update, isConfigured, accounts, switchAccount, addAccount, removeAccount } = useSettings();
   const [apiKey, setApiKey] = useState(settings.apiKey);
   const [fromAddress, setFromAddress] = useState(settings.fromAddress);
   const [displayName, setDisplayName] = useState(settings.displayName);
+  const [role, setRole] = useState(settings.role);
   const [reveal, setReveal] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -18,6 +19,7 @@ export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () =
       setApiKey(settings.apiKey);
       setFromAddress(settings.fromAddress);
       setDisplayName(settings.displayName);
+      setRole(settings.role || "");
       setSaved(false);
     }
   }, [open, settings]);
@@ -25,7 +27,7 @@ export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () =
   if (!open) return null;
 
   const save = () => {
-    update({ apiKey: apiKey.trim(), fromAddress: fromAddress.trim(), displayName: displayName.trim() });
+    update({ apiKey: apiKey.trim(), fromAddress: fromAddress.trim(), displayName: displayName.trim(), role: role.trim() });
     setSaved(true);
     setTimeout(onClose, 600);
   };
@@ -40,22 +42,47 @@ export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () =
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-outline-variant/30 p-container-padding">
-          <div className="flex items-center gap-3">
-            <Icon name="settings" className="text-primary" filled />
-            <h2 className="font-display text-title-md font-bold">Settings</h2>
+        <div className="flex flex-col gap-4 border-b border-outline-variant/30 p-container-padding">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Icon name="settings" className="text-primary" filled />
+              <h2 className="font-display text-title-md font-bold">Settings</h2>
+            </div>
+            <button
+              onClick={onClose}
+              className="rounded-full p-2 text-secondary transition-colors hover:bg-surface-variant hover:text-error"
+              aria-label="Close"
+            >
+              <Icon name="close" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="rounded-full p-2 text-secondary transition-colors hover:bg-surface-variant hover:text-error"
-            aria-label="Close"
-          >
-            <Icon name="close" />
-          </button>
+          
+          <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1">
+            {accounts.map((acc) => (
+              <button
+                key={acc.id}
+                onClick={() => switchAccount(acc.id)}
+                className={`flex items-center gap-2 whitespace-nowrap rounded-lg border px-3 py-1.5 text-label-sm transition-all ${
+                  settings.id === acc.id
+                    ? "border-primary bg-primary/10 text-primary font-bold"
+                    : "border-outline-variant text-secondary hover:border-primary hover:text-primary"
+                }`}
+              >
+                <Icon name="person" className="text-[16px]" />
+                {acc.displayName || acc.id}
+              </button>
+            ))}
+            <button
+              onClick={() => addAccount()}
+              className="flex items-center gap-1 rounded-lg border border-dashed border-outline-variant px-3 py-1.5 text-label-sm text-secondary transition-colors hover:border-primary hover:text-primary"
+            >
+              <Icon name="add" className="text-[16px]" /> New
+            </button>
+          </div>
         </div>
 
         {/* Body */}
-        <div className="space-y-stack-md p-container-padding">
+        <div className="space-y-stack-md p-container-padding max-h-[60vh] overflow-y-auto custom-scrollbar">
           <p className="text-body-md text-secondary">
             Kairosend is local-first. Your Resend API key is stored only on this device.
           </p>
@@ -101,6 +128,15 @@ export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () =
             />
           </Field>
 
+          <Field label="Role / Subtitle" hint="Shown beneath your display name">
+            <input
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              placeholder="Resend Account"
+              className="w-full rounded-lg border border-outline-variant bg-surface-container-low px-3 py-2 text-body-md text-on-surface placeholder:text-outline focus:border-primary focus:outline-none"
+            />
+          </Field>
+
           {!isConfigured && (
             <div className="flex items-center gap-2 rounded-lg border border-error/20 bg-error-container/10 p-3 text-label-sm text-error">
               <Icon name="info" className="text-[18px]" />
@@ -120,6 +156,14 @@ export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () =
             Get an API key →
           </a>
           <div className="flex items-center gap-stack-md">
+            {accounts.length > 1 && (
+              <button
+                onClick={() => removeAccount(settings.id)}
+                className="text-label-sm font-bold text-error hover:underline mr-4"
+              >
+                Delete Account
+              </button>
+            )}
             {saved && (
               <span className="flex items-center gap-1 text-label-sm text-primary">
                 <Icon name="check_circle" className="text-[16px]" filled /> Saved

@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useSettings } from "./settings";
 
 /** Resend-shaped error thrown by the API client. */
@@ -31,30 +32,33 @@ async function handle<T>(res: Response): Promise<T> {
 /** Fetch helper bound to the local Resend API key (same-origin routes). */
 export function useApi() {
   const { settings } = useSettings();
-  const headers = (extra?: HeadersInit) => {
-    const h: Record<string, string> = {
-      "Content-Type": "application/json",
-      ...(extra as Record<string, string>),
+  return useMemo(() => {
+    const headers = (extra?: HeadersInit) => {
+      const h: Record<string, string> = {
+        "Content-Type": "application/json",
+        ...(extra as Record<string, string>),
+      };
+      if (settings.apiKey) h["x-resend-key"] = settings.apiKey;
+      return h;
     };
-    if (settings.apiKey) h["x-resend-key"] = settings.apiKey;
-    return h;
-  };
-  return {
-    get: <T>(path: string, init?: RequestInit) =>
-      fetch(path, { ...init, method: "GET", headers: headers(init?.headers) }).then(handle<T>),
-    post: <T>(path: string, body?: unknown, init?: RequestInit) =>
-      fetch(path, {
-        ...init,
-        method: "POST",
-        headers: headers(init?.headers),
-        body: body ? JSON.stringify(body) : undefined,
-      }).then(handle<T>),
-    patch: <T>(path: string, body?: unknown, init?: RequestInit) =>
-      fetch(path, {
-        ...init,
-        method: "PATCH",
-        headers: headers(init?.headers),
-        body: body ? JSON.stringify(body) : undefined,
-      }).then(handle<T>),
-  };
+
+    return {
+      get: <T>(path: string, init?: RequestInit) =>
+        fetch(path, { ...init, method: "GET", headers: headers(init?.headers) }).then(handle<T>),
+      post: <T>(path: string, body?: unknown, init?: RequestInit) =>
+        fetch(path, {
+          ...init,
+          method: "POST",
+          headers: headers(init?.headers),
+          body: body ? JSON.stringify(body) : undefined,
+        }).then(handle<T>),
+      patch: <T>(path: string, body?: unknown, init?: RequestInit) =>
+        fetch(path, {
+          ...init,
+          method: "PATCH",
+          headers: headers(init?.headers),
+          body: body ? JSON.stringify(body) : undefined,
+        }).then(handle<T>),
+    };
+  }, [settings.apiKey]);
 }

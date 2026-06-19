@@ -107,7 +107,7 @@ export function ComposeForm() {
       </div>
 
       {/* Card */}
-      <div className="relative flex flex-1 flex-col overflow-hidden rounded-xl border border-outline-variant bg-surface-container-low shadow-glow">
+      <div className="relative flex flex-1 flex-col overflow-hidden rounded-xl border border-outline-variant bg-surface-container-low shadow-2xl">
         {!isConfigured && (
           <div className="flex items-center gap-2 border-b border-error/20 bg-error-container/10 p-3 text-label-sm text-error">
             <Icon name="info" className="text-[18px]" />
@@ -117,7 +117,8 @@ export function ComposeForm() {
 
         {/* Schedule bar */}
         {showSchedule && (
-          <div className="flex items-center gap-3 border-b border-outline-variant/30 bg-surface-container-highest/30 p-stack-md">
+          <div className="relative flex items-center gap-3 bg-surface-container-highest/30 p-stack-md">
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-outline-variant/30 to-transparent" />
             <Icon name="schedule" className="text-primary" />
             <label className="text-label-sm text-secondary">Send at</label>
             <input
@@ -171,7 +172,8 @@ export function ComposeForm() {
         </div>
 
         {/* Toolbar (decorative formatting affordances) */}
-        <div className="flex items-center gap-gutter border-b border-outline-variant/30 bg-surface-container-highest/30 px-container-padding py-2">
+        <div className="relative flex items-center gap-gutter bg-surface-container-highest/30 px-container-padding py-2">
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-outline-variant/30 to-transparent" />
           {["format_bold", "format_italic", "format_underlined"].map((i) => (
             <button key={i} className="rounded p-1.5 text-on-surface-variant hover:bg-surface-variant hover:text-primary">
               <Icon name={i} className="text-[20px]" />
@@ -197,12 +199,13 @@ export function ComposeForm() {
         />
 
         {/* Footer */}
-        <div className="flex items-center justify-between border-t border-outline-variant/30 bg-surface-container-low p-container-padding">
+        <div className="relative flex items-center justify-between bg-surface-container-low p-container-padding">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-outline-variant/30 to-transparent" />
           <div className="flex items-center gap-gutter">
             <button
               onClick={() => send(false)}
               disabled={state.kind === "sending" || !payload}
-              className="flex items-center gap-2 rounded-lg bg-primary px-8 py-3 font-bold text-on-primary shadow-gold transition-all hover:bg-surface-tint active:scale-95 disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg bg-primary px-8 py-3 font-bold text-on-primary shadow-lg shadow-primary/10 transition-all hover:bg-surface-tint active:scale-95 disabled:opacity-50"
             >
               <Icon name="send" filled />
               {state.kind === "sending" ? "Sending…" : "Send Message"}

@@ -11,9 +11,9 @@ export function Badge({
   className?: string;
 }) {
   const tones: Record<string, string> = {
-    primary: "bg-primary/10 text-primary border-primary/20",
+    primary: "bg-primary/10 text-primary border border-primary/20",
     secondary: "bg-secondary-container text-secondary",
-    error: "bg-error-container/30 text-error border-error/20",
+    error: "bg-error-container/30 text-error border border-error/20",
     outline: "border border-outline-variant text-secondary",
   };
   return (

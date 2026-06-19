@@ -24,12 +24,14 @@ export function Sidebar({ onOpenSettings }: { onOpenSettings?: () => void }) {
     pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
-    <aside className="fixed left-0 top-0 z-30 flex h-screen w-sidebar-width flex-col border-r border-outline-variant bg-surface py-container-padding">
+    <aside className="fixed left-0 top-0 z-30 flex h-screen w-sidebar-width flex-col bg-surface py-container-padding">
+      {/* Gradient Right Border */}
+      <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-outline-variant/40 to-transparent" />
       {/* Brand */}
       <div className="mb-stack-lg px-container-padding">
         <h1 className="mb-1 font-display text-title-md font-bold text-primary">Kairosend</h1>
-        <p className="text-label-sm uppercase tracking-widest text-secondary opacity-60">
-          Resend · Executive Mail
+        <p className="text-label-sm text-secondary opacity-60">
+          Executive Mail
         </p>
       </div>
 
@@ -37,9 +39,9 @@ export function Sidebar({ onOpenSettings }: { onOpenSettings?: () => void }) {
       <div className="mb-stack-lg px-container-padding">
         <Link
           href="/compose"
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container py-3 px-4 font-display text-body-lg font-bold text-on-primary-container shadow-gold transition-all hover:opacity-90 active:scale-95"
+          className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container py-3 px-4 font-display text-body-lg font-bold text-on-primary transition-all hover:opacity-90 active:scale-95"
         >
-          <Icon name="edit" className="text-[20px]" filled />
+          <Icon name="edit" className="text-[20px]" />
           Compose
         </Link>
       </div>
@@ -55,8 +57,8 @@ export function Sidebar({ onOpenSettings }: { onOpenSettings?: () => void }) {
               className={cn(
                 "flex items-center gap-3 px-container-padding py-stack-sm transition-colors duration-200",
                 active
-                  ? "email-item-active text-primary"
-                  : "text-secondary hover:text-primary",
+                  ? "bg-secondary-container/10 border-l-2 border-primary text-primary"
+                  : "text-secondary hover:text-primary border-l-2 border-transparent",
               )}
             >
               <Icon name={item.icon} filled={active} />
@@ -67,7 +69,9 @@ export function Sidebar({ onOpenSettings }: { onOpenSettings?: () => void }) {
       </nav>
 
       {/* Footer */}
-      <div className="mt-auto border-t border-outline-variant pt-stack-md">
+      <div className="mt-auto relative pt-stack-md">
+        {/* Gradient Top Border */}
+        <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-outline-variant/40 to-transparent" />
         <button
           onClick={onOpenSettings}
           className="flex w-full items-center gap-3 px-container-padding py-stack-sm text-secondary transition-colors hover:text-primary"

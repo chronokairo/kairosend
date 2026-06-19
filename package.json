@@ -12,9 +12,9 @@
   },
   "main": "electron/main.js",
   "scripts": {
-    "dev": "concurrently -k -n \"NEXT,ELECTRON\" -c \"magenta,cyan\" \"npm:dev:next\" \"npm:dev:electron\"",
+    "dev": "concurrently -k -n \"NEXT,ELECTRON\" -c \"magenta,cyan\" \"bun run dev:next\" \"bun run dev:electron\"",
     "dev:next": "next dev -p 3000",
-    "dev:electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
+    "dev:electron": "wait-on http-get://localhost:3000/inbox && cross-env NODE_ENV=development electron . --no-sandbox",
     "build": "next build",
     "start": "next start -p 3000",
     "lint": "next lint",

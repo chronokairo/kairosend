@@ -58,7 +58,8 @@ export function MailPreview({
       <div className="pointer-events-none fixed right-0 top-16 -z-0 h-96 w-96 rounded-full bg-primary/5 blur-[120px]" />
 
       {/* Toolbar */}
-      <div className="glass-panel sticky top-0 z-10 flex h-14 items-center justify-between border-b border-outline-variant px-container-padding">
+      <div className="glass-panel sticky top-0 z-10 flex h-14 items-center justify-between px-container-padding">
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-outline-variant/40 to-transparent" />
         <div className="flex items-center gap-stack-md">
           <Link href={replyBase} className="flex items-center gap-1 text-secondary hover:text-primary">
             <Icon name="arrow_back" className="text-[20px]" /> <span className="text-label-sm hidden sm:inline">Back</span>
@@ -85,7 +86,8 @@ export function MailPreview({
       <div className="mx-auto w-full max-w-4xl px-container-padding py-12">
         <div className="mb-stack-lg">
           <h1 className="mb-stack-md font-display text-display leading-tight text-on-surface">{subject}</h1>
-          <div className="flex items-center justify-between gap-4 border-b border-outline-variant/30 py-stack-md">
+          <div className="relative flex items-center justify-between gap-4 py-stack-md">
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-outline-variant/30 to-transparent" />
             <div className="flex items-center gap-4">
               <Avatar label={from} size={48} />
               <div className="min-w-0">
@@ -121,7 +123,8 @@ export function MailPreview({
 
         {/* Attachments */}
         {attachments.length > 0 && (
-          <div className="mt-12 border-t border-outline-variant/30 pt-stack-lg">
+          <div className="relative mt-12 pt-stack-lg">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-outline-variant/30 to-transparent" />
             <h3 className="mb-stack-md text-label-sm font-bold uppercase tracking-widest text-secondary">
               {attachments.length} Attachment{attachments.length > 1 ? "s" : ""}
             </h3>

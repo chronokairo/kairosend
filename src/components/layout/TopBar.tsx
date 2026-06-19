@@ -15,7 +15,8 @@ export function TopBar({
   onSearch?: (q: string) => void;
 }) {
   return (
-    <header className="fixed left-sidebar-width right-0 top-0 z-20 flex h-16 items-center justify-between border-b border-outline-variant bg-surface px-container-padding">
+    <header className="fixed left-sidebar-width right-0 top-0 z-20 flex h-16 items-center justify-between bg-surface px-container-padding">
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-outline-variant/40 to-transparent" />
       <div className="flex flex-1 items-center gap-stack-md">
         <div className="relative w-full max-w-xl">
           <Icon

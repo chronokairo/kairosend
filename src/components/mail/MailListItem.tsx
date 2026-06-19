@@ -26,10 +26,11 @@ export function MailListItem({
     <Link
       href={href}
       className={cn(
-        "group relative block cursor-pointer border-b border-outline-variant p-container-padding transition-all hover:bg-surface-container-highest",
-        active && "email-item-active border-b-0",
+        "group relative block cursor-pointer p-container-padding transition-all hover:bg-surface-container-highest",
+        active && "email-item-active",
       )}
     >
+      {!active && <div className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-outline-variant/30 to-transparent" />}
       <div className="mb-1 flex items-start justify-between">
         <h3
           className={cn(

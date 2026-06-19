@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { EmptyState, ErrorState, LoadingState } from "./EmptyState";
 import { MailListItem } from "./MailListItem";
 import { toReceivedRow, toSentRow } from "./types";
@@ -33,18 +33,44 @@ export function MailList<T extends { id: string }>({
   const pathname = usePathname() ?? "";
   const base = variant === "received" ? "/inbox" : "/sent";
   const activeId = selectedId ?? deriveActiveId(pathname, base);
-  const { isConfigured } = useSettings();
+  const { isConfigured, settings } = useSettings();
   const { data, loading, error, hasMore, loadingMore, loadMore, reload } = useList<T>(
     isConfigured ? apiPath : null,
   );
 
-  // Transform is selected here (not passed as a prop) so this client component
-  // can be rendered from a server layout without crossing the RSC boundary.
-  const transform = (item: T): MailRow =>
-    variant === "received"
-      ? toReceivedRow(item as unknown as ReceivedEmailListItem)
-      : toSentRow(item as unknown as SentEmail);
-  const rows = data.map(transform);
+
+  // Extract email address for filtering
+  const filterEmail = useMemo(() => {
+    const match = settings.fromAddress?.match(/<([^>]+)>/);
+    return (match ? match[1] : settings.fromAddress?.trim())?.toLowerCase() || "";
+  }, [settings.fromAddress]);
+
+  const rows = useMemo(() => {
+    // Transform is selected here (not passed as a prop) so this client component
+    // can be rendered from a server layout without crossing the RSC boundary.
+    const transform = (item: T): MailRow =>
+      variant === "received"
+        ? toReceivedRow(item as unknown as ReceivedEmailListItem)
+        : toSentRow(item as unknown as SentEmail);
+
+    const allRows = data.map(transform);
+    if (!filterEmail) return allRows;
+
+    return allRows.filter((row) => {
+      if (variant === "received") {
+        return row.to?.some((t) => t.toLowerCase().includes(filterEmail));
+      } else {
+        return row.from?.toLowerCase().includes(filterEmail);
+      }
+    });
+  }, [data, filterEmail, variant]);
+
+  // Auto-fetch if local filtering emptied the chunk but more data exists on the server
+  useEffect(() => {
+    if (data.length > 0 && rows.length === 0 && hasMore && !loading && !loadingMore) {
+      loadMore();
+    }
+  }, [data.length, rows.length, hasMore, loading, loadingMore, loadMore]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -55,8 +81,10 @@ export function MailList<T extends { id: string }>({
   }, [router, base]);
 
   return (
-    <section className="flex w-list-width flex-col border-r border-outline-variant bg-surface-container-lowest">
-      <div className="flex items-center justify-between border-b border-outline-variant p-container-padding">
+    <section className="relative flex w-list-width flex-col bg-surface-container-lowest">
+      <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-outline-variant/40 to-transparent z-10" />
+      <div className="relative flex items-center justify-between p-container-padding">
+        <div className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-outline-variant/40 to-transparent" />
         <h2 className="font-display text-title-md font-bold">{title}</h2>
         <button onClick={reload} className="text-label-sm text-primary hover:underline" title="Refresh">
           Refresh
