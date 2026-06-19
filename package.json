@@ -1,0 +1,68 @@
+{
+  "name": "kairosend",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Kairosend — an open-source Resend desktop client (Next.js + Electron) for Windows & Linux. Aureate Obsidian design.",
+  "license": "MIT",
+  "author": "Kairosend contributors",
+  "homepage": "https://github.com/your-org/kairosend",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/kairosend.git"
+  },
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k -n \"NEXT,ELECTRON\" -c \"magenta,cyan\" \"npm:dev:next\" \"npm:dev:electron\"",
+    "dev:next": "next dev -p 3000",
+    "dev:electron": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "electron:pack": "electron-builder --dir",
+    "dist": "next build && electron-builder",
+    "dist:win": "next build && electron-builder --win nsis portable",
+    "dist:linux": "next build && electron-builder --linux AppImage deb tar.gz",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.10",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "10.4.19",
+    "concurrently": "8.2.2",
+    "cross-env": "7.0.3",
+    "electron": "31.3.1",
+    "electron-builder": "24.13.3",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.5",
+    "postcss": "8.4.39",
+    "prettier": "3.3.3",
+    "prettier-plugin-tailwindcss": "0.6.5",
+    "tailwindcss": "3.4.6",
+    "typescript": "5.5.3",
+    "wait-on": "7.2.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "build": {
+    "appId": "dev.kairosend.app",
+    "productName": "Kairosend",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      ".next/**/*",
+      "public/**/*",
+      "package.json"
+    ]
+  }
+}

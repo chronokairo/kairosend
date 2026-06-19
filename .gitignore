@@ -1,0 +1,123 @@
+# ─────────────────────────────────────────────────────────────
+# Kairosend — Resend desktop client (Next.js + Electron)
+# Open-source. Covers Node, Next.js, TypeScript, Electron and
+# electron-builder artifacts for Windows & Linux targets.
+# ─────────────────────────────────────────────────────────────
+
+# ── Dependencies ──────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/install-state.gz
+.yarn/build-state.yml
+jspm_packages/
+
+# ── Next.js ───────────────────────────────────────────────────
+.next/
+out/
+build/
+dist/
+.next-server/
+next-env.d.ts
+
+# ── TypeScript ────────────────────────────────────────────────
+*.tsbuildinfo
+.nyc_output/
+
+# ── Production / Electron builds ──────────────────────────────
+release/
+release-builds/
+releases/
+app-builds/
+packaged/
+electron-builder.out/
+# Windows
+*.exe
+*.msi
+*.appx
+*.appxbundle
+*.msix
+*.msm
+# Linux
+*.AppImage
+*.deb
+*.rpm
+*.snap
+*.flatpak
+*.tar.gz
+*.pacman
+# macOS (kept for parity, though primary targets are Win/Linux)
+*.dmg
+*.zip
+*.app
+
+# ── Logs ──────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.electron-debug.log
+
+# ── Testing / coverage ───────────────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+junit.xml
+
+# ── Env & secrets (NEVER commit API keys) ────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+resend.env
+*.key
+*.pem
+secrets/
+
+# ── IDE / editors ─────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.history/
+
+# ── OS metadata ───────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ── Misc caches ───────────────────────────────────────────────
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.turbo/
+.remix/
+.fleet/
+ ferry-cache/
+
+# ── Lockfiles (keep one; ignore the others) ───────────────────
+# We commit package-lock.json (npm). Ignore yarn/pnpm/bun locks.
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+bun.lock

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureate | Sent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#e2e2e4",
+                    "surface-bright": "#37393b",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-fixed-variant": "#474649",
+                    "on-secondary": "#313030",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#f6be39",
+                    "secondary-container": "#4a4949",
+                    "surface-container-lowest": "#0c0e10",
+                    "on-error-container": "#ffdad6",
+                    "primary-container": "#d4a017",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#1b1b1d",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "tertiary": "#c8c6c8",
+                    "surface-container-high": "#282a2c",
+                    "outline-variant": "#4f4634",
+                    "inverse-primary": "#795900",
+                    "outline": "#9b8f7a",
+                    "background": "#111415",
+                    "on-primary": "#402d00",
+                    "surface-container": "#1e2021",
+                    "on-primary-fixed": "#261a00",
+                    "primary-fixed-dim": "#f6be39",
+                    "primary-fixed": "#ffdfa0",
+                    "on-tertiary": "#303032",
+                    "error-container": "#93000a",
+                    "surface-variant": "#333537",
+                    "on-tertiary-container": "#3d3d3f",
+                    "tertiary-container": "#aaa8aa",
+                    "on-surface-variant": "#d3c5ae",
+                    "inverse-surface": "#e2e2e4",
+                    "surface-dim": "#111415",
+                    "tertiary-fixed": "#e4e2e4",
+                    "surface-container-highest": "#333537",
+                    "inverse-on-surface": "#2f3132",
+                    "surface-container-low": "#1a1c1d",
+                    "on-secondary-container": "#bab8b7",
+                    "on-primary-container": "#503a00",
+                    "on-secondary-fixed-variant": "#474646",
+                    "surface": "#111415",
+                    "secondary-fixed": "#e5e2e1",
+                    "primary": "#f6be39",
+                    "tertiary-fixed-dim": "#c8c6c8",
+                    "secondary": "#c8c6c5",
+                    "on-background": "#e2e2e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "list-width": "380px",
+                    "stack-sm": "8px",
+                    "sidebar-width": "280px",
+                    "stack-md": "16px",
+                    "container-padding": "24px",
+                    "unit": "4px",
+                    "stack-lg": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "display": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-xs": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-xs": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e4;
+            overflow: hidden;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111415;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333537;
+            border-radius: 10px;
+        }
+        .pane-border {
+            border-color: #2C2C2E;
+        }
+        .active-nav-indicator {
+            box-shadow: inset 2px 0 0 0 #f6be39;
+        }
+    </style>
+</head>
+<body class="flex h-screen font-body-md overflow-hidden">
+<!-- SideNavBar Shell -->
+<aside class="w-sidebar-width h-screen fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col h-full py-container-padding z-20">
+<div class="px-container-padding mb-stack-lg">
+<h1 class="font-display text-title-md font-bold text-primary">Aureate</h1>
+<p class="text-secondary text-label-xs mt-1">Executive Mail</p>
+</div>
+<div class="px-container-padding mb-stack-lg">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                Compose
+            </button>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Nav Item: Inbox -->
+<a class="flex items-center text-secondary px-container-padding py-stack-sm hover:text-primary transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">inbox</span>
+<span class="font-display text-body-lg">Inbox</span>
+</a>
+<!-- Nav Item: Sent (ACTIVE) -->
+<a class="flex items-center bg-secondary-container/10 border-l-2 border-primary text-primary px-container-padding py-stack-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">send</span>
+<span class="font-display text-body-lg font-semibold">Sent</span>
+</a>
+<!-- Nav Item: Drafts -->
+<a class="flex items-center text-secondary px-container-padding py-stack-sm hover:text-primary transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">drafts</span>
+<span class="font-display text-body-lg">Drafts</span>
+</a>
+<!-- Nav Item: Archive -->
+<a class="flex items-center text-secondary px-container-padding py-stack-sm hover:text-primary transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">archive</span>
+<span class="font-display text-body-lg">Archive</span>
+</a>
+<!-- Nav Item: Trash -->
+<a class="flex items-center text-secondary px-container-padding py-stack-sm hover:text-primary transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">delete</span>
+<span class="font-display text-body-lg">Trash</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/30">
+<a class="flex items-center text-secondary px-container-padding py-stack-sm hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-display text-body-lg">Settings</span>
+</a>
+<a class="flex items-center text-secondary px-container-padding py-stack-sm hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+<span class="font-display text-body-lg">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-sidebar-width flex flex-col h-screen">
+<!-- TopAppBar Shell -->
+<header class="flex justify-between items-center h-16 px-container-padding bg-surface border-b border-outline-variant z-10 sticky top-0">
+<div class="flex items-center flex-1 max-w-2xl">
+<div class="relative w-full max-w-md bg-surface-container-low rounded-lg border border-outline-variant px-4 py-2 flex items-center group focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-secondary mr-2 group-focus-within:text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder:text-outline" placeholder="Search sent messages..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-secondary hover:bg-surface-variant p-2 rounded-full transition-all active:scale-95 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-surface"></span>
+</button>
+<button class="text-secondary hover:bg-surface-variant p-2 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a sharp, professional executive in a dark designer suit, set against a dark obsidian studio background with dramatic gold rim lighting. The style is hyper-realistic with deep contrasts and a luxurious, high-end commercial aesthetic, perfectly matching the dark and gold theme of Aureate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGPwCZEdmNnQpnV1yuaTH7neKWtmQWvO21qsKpXjEvA54thyeW5IBtTlWckIttg4FRR5RNkBYtHX7fp5PQXZI7ARV4hxFKe9UjZN64bnDttWMq94qCfYGpsCkS4Ecpic366dDO-SYVeuprPI4rbcT0C79uzVJBkYzM03GxaQV18lj_5bf0AMLwSkatm335cscmtyY9_QSiASVvcqAcgetAn5KMaG97dPOGqvgic7muq4p7myA6O9pXIVHc8-OoT2hPh4e_YmNBNPQ"/>
+</div>
+</div>
+</header>
+<!-- Sent Emails View (3-Pane Model) -->
+<div class="flex flex-1 overflow-hidden">
+<!-- List View (Sent Emails) -->
+<section class="w-list-width border-r border-outline-variant flex flex-col bg-surface-container-low">
+<div class="p-container-padding flex justify-between items-center">
+<h2 class="font-display text-title-md font-bold text-on-surface">Sent</h2>
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Sent Item 1: Delivered & Read -->
+<div class="p-stack-md border-b border-outline-variant hover:bg-secondary-container/5 cursor-pointer relative group transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-center"></div>
+<div class="flex justify-between mb-1">
+<span class="text-label-sm text-primary font-bold">To: Julian Vane</span>
+<span class="text-label-xs text-outline">10:42 AM</span>
+</div>
+<h3 class="text-body-md font-semibold text-on-surface truncate">Quarterly Strategy Revisions</h3>
+<p class="text-label-xs text-secondary line-clamp-2 mt-1">Please find the updated deck for the Q3 board meeting. I've highlighted the performance metrics...</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-label-xs font-bold">Strategy</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+<span class="text-label-xs">Read</span>
+</div>
+</div>
+</div>
+<!-- Sent Item 2: Delivered -->
+<div class="p-stack-md border-b border-outline-variant hover:bg-secondary-container/5 cursor-pointer relative group transition-all bg-secondary-container/10 border-l-2 border-primary">
+<div class="flex justify-between mb-1">
+<span class="text-label-sm text-primary font-bold">To: Marketing Team</span>
+<span class="text-label-xs text-outline">09:15 AM</span>
+</div>
+<h3 class="text-body-md font-semibold text-on-surface truncate">Brand Guidelines V2.1 Final</h3>
+<p class="text-label-xs text-secondary line-clamp-2 mt-1">The new obsidian and gold palette is now finalized. Please ensure all assets are updated accordingly...</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-secondary text-label-xs font-bold">Design</span>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">done_all</span>
+<span class="text-label-xs">Delivered</span>
+</div>
+</div>
+</div>
+<!-- Sent Item 3 -->
+<div class="p-stack-md border-b border-outline-variant hover:bg-secondary-container/5 cursor-pointer relative group transition-all">
+<div class="flex justify-between mb-1">
+<span class="text-label-sm text-primary font-bold">To: Finance Dept.</span>
+<span class="text-label-xs text-outline">Yesterday</span>
+</div>
+<h3 class="text-body-md font-semibold text-on-surface truncate">Expense Reports - June</h3>
+<p class="text-label-xs text-secondary line-clamp-2 mt-1">All travel expenses for the European summit have been logged in the system for approval.</p>
+<div class="mt-3 flex items-center justify-between">
+<div class="flex gap-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-secondary text-label-xs font-bold">Finance</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">done_all</span>
+<span class="text-label-xs">Read</span>
+</div>
+</div>
+</div>
+<!-- Sent Item 4 -->
+<div class="p-stack-md border-b border-outline-variant hover:bg-secondary-container/5 cursor-pointer relative group transition-all">
+<div class="flex justify-between mb-1">
+<span class="text-label-sm text-primary font-bold">To: Helena Cross</span>
+<span class="text-label-xs text-outline">July 12</span>
+</div>
+<h3 class="text-body-md font-semibold text-on-surface truncate">Dinner Invitation - Private Lounge</h3>
+<p class="text-label-xs text-secondary line-clamp-2 mt-1">Helena, it would be a pleasure to discuss the partnership over dinner this Thursday.</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-secondary text-label-xs font-bold">Networking</span>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">done</span>
+<span class="text-label-xs">Sent</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Reading Pane (Fluid) -->
+<section class="flex-1 bg-background p-stack-lg flex flex-col overflow-y-auto custom-scrollbar relative">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] -z-10 rounded-full"></div>
+<div class="max-w-4xl mx-auto w-full">
+<div class="flex justify-between items-start mb-stack-lg">
+<div>
+<h1 class="text-display font-display text-on-surface leading-tight">Brand Guidelines V2.1 Final</h1>
+<div class="mt-4 flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-primary-container flex items-center justify-center font-bold text-on-primary-container">AU</div>
+<div>
+<p class="text-body-md font-semibold text-on-surface">Aureate Executive <span class="text-secondary font-normal">&lt;executive@aureate.com&gt;</span></p>
+<p class="text-label-sm text-secondary">To: Marketing Team &lt;mkt-global@aureate.com&gt;</p>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:border-primary transition-colors">
+<span class="material-symbols-outlined">print</span>
+</button>
+<button class="p-2 border border-outline-variant rounded-lg hover:border-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<div class="prose prose-invert max-w-none text-body-lg text-on-surface/90 leading-relaxed space-y-4">
+<p>Team,</p>
+<p>I am pleased to announce that the new brand identity for Aureate has been finalized. This update marks a significant evolution in our visual presence, moving towards an obsidian-centric dark mode that reflects our premium executive positioning.</p>
+<p><strong>Key Changes:</strong></p>
+<ul class="list-disc pl-5 space-y-2">
+<li>Primary Background: Pure Obsidian (#000000)</li>
+<li>Accent Primary: Burnt Gold (#D4A017)</li>
+<li>Typography: Inter Display for headings, Inter for body copy.</li>
+</ul>
+<div class="my-8 p-6 bg-surface-container rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-4 relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl">description</span>
+<div class="flex-1">
+<h4 class="text-body-md font-bold text-on-surface">Aureate_Brand_Book_v2.1.pdf</h4>
+<p class="text-label-xs text-secondary">PDF Document • 42.4 MB</p>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-label-sm font-bold flex items-center gap-2 hover:bg-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                                    Download
+                                </button>
+</div>
+</div>
+<p>Please begin integrating these assets into all outgoing communications immediately. The digital list views and dashboard designs should be prioritized.</p>
+<p>Best Regards,<br/><span class="text-primary font-bold">The Executive Team</span></p>
+</div>
+<div class="mt-stack-lg pt-stack-lg border-t border-outline-variant flex gap-4">
+<button class="px-6 py-2 bg-surface-container-high border border-outline-variant rounded-full text-label-sm font-bold hover:border-primary transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">reply</span>
+                            Reply
+                        </button>
+<button class="px-6 py-2 bg-surface-container-high border border-outline-variant rounded-full text-label-sm font-bold hover:border-primary transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">forward</span>
+                            Forward
+                        </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual FAB (Mobile/Utility) - Strictly following JSON context -->
+<div class="md:hidden fixed bottom-6 right-6">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center transition-transform active:scale-95">
+<span class="material-symbols-outlined text-3xl">edit</span>
+</button>
+</div>
+<script>
+        // Micro-interactions for list item selection
+        const emailItems = document.querySelectorAll('section.w-list-width > div:nth-child(2) > div');
+        emailItems.forEach(item => {
+            item.addEventListener('click', () => {
+                emailItems.forEach(i => i.classList.remove('bg-secondary-container/10', 'border-l-2', 'border-primary'));
+                item.classList.add('bg-secondary-container/10', 'border-l-2', 'border-primary');
+            });
+        });
+
+        // Search bar hover effect
+        const searchInput = document.querySelector('input');
+        const searchContainer = searchInput.parentElement;
+        searchInput.addEventListener('focus', () => {
+            searchContainer.classList.add('border-primary');
+            searchContainer.classList.remove('border-outline-variant');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchContainer.classList.remove('border-primary');
+            searchContainer.classList.add('border-outline-variant');
+        });
+    </script>
+</body></html>

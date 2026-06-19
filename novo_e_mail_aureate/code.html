@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aureate | Compose Executive Mail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0c0e10;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f4634;
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f6be39;
+        }
+        body {
+            background-color: #000000;
+            overflow: hidden;
+        }
+        .compose-area:focus-within {
+            border-color: #f6be39;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e2e2e4",
+                        "surface-bright": "#37393b",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-fixed-variant": "#474649",
+                        "on-secondary": "#313030",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#f6be39",
+                        "secondary-container": "#4a4949",
+                        "surface-container-lowest": "#0c0e10",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#d4a017",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#1b1b1d",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "tertiary": "#c8c6c8",
+                        "surface-container-high": "#282a2c",
+                        "outline-variant": "#4f4634",
+                        "inverse-primary": "#795900",
+                        "outline": "#9b8f7a",
+                        "background": "#111415",
+                        "on-primary": "#402d00",
+                        "surface-container": "#1e2021",
+                        "on-primary-fixed": "#261a00",
+                        "primary-fixed-dim": "#f6be39",
+                        "primary-fixed": "#ffdfa0",
+                        "on-tertiary": "#303032",
+                        "error-container": "#93000a",
+                        "surface-variant": "#333537",
+                        "on-tertiary-container": "#3d3d3f",
+                        "tertiary-container": "#aaa8aa",
+                        "on-surface-variant": "#d3c5ae",
+                        "inverse-surface": "#e2e2e4",
+                        "surface-dim": "#111415",
+                        "tertiary-fixed": "#e4e2e4",
+                        "surface-container-highest": "#333537",
+                        "inverse-on-surface": "#2f3132",
+                        "surface-container-low": "#1a1c1d",
+                        "on-secondary-container": "#bab8b7",
+                        "on-primary-container": "#503a00",
+                        "on-secondary-fixed-variant": "#474646",
+                        "surface": "#111415",
+                        "secondary-fixed": "#e5e2e1",
+                        "primary": "#f6be39",
+                        "tertiary-fixed-dim": "#c8c6c8",
+                        "secondary": "#c8c6c5",
+                        "on-background": "#e2e2e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "list-width": "380px",
+                        "stack-sm": "8px",
+                        "sidebar-width": "280px",
+                        "stack-md": "16px",
+                        "container-padding": "24px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-xs": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-xs": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="w-sidebar-width h-screen fixed left-0 top-0 border-r border-outline-variant flex flex-col py-container-padding z-50">
+<div class="px-container-padding mb-stack-lg">
+<h1 class="font-display text-title-md font-bold text-primary mb-1">Aureate</h1>
+<p class="text-secondary text-label-sm uppercase tracking-widest opacity-60">Executive Mail</p>
+</div>
+<div class="px-container-padding mb-stack-lg">
+<!-- Active state context: We are composing, but "Drafts" or staying on "Inbox" context is neutral. Here we treat "Inbox" as the anchor -->
+<button class="w-full bg-primary-container text-on-primary-container font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 mb-stack-lg">
+<span class="material-symbols-outlined">edit</span>
+                Compose
+            </button>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-secondary px-container-padding py-stack-sm flex items-center gap-4 hover:text-primary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">inbox</span>
+<span class="font-display text-body-lg">Inbox</span>
+</div>
+<div class="text-secondary px-container-padding py-stack-sm flex items-center gap-4 hover:text-primary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">send</span>
+<span class="font-display text-body-lg">Sent</span>
+</div>
+<!-- Treating Drafts as the active anchor for a Compose session -->
+<div class="bg-secondary-container/10 border-l-2 border-primary text-primary px-container-padding py-stack-sm flex items-center gap-4 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">drafts</span>
+<span class="font-display text-body-lg">Drafts</span>
+</div>
+<div class="text-secondary px-container-padding py-stack-sm flex items-center gap-4 hover:text-primary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">archive</span>
+<span class="font-display text-body-lg">Archive</span>
+</div>
+<div class="text-secondary px-container-padding py-stack-sm flex items-center gap-4 hover:text-primary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">delete</span>
+<span class="font-display text-body-lg">Trash</span>
+</div>
+</nav>
+<div class="mt-auto border-t border-outline-variant/30 pt-stack-md">
+<div class="text-secondary px-container-padding py-stack-sm flex items-center gap-4 hover:text-primary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-display text-body-lg">Settings</span>
+</div>
+<div class="text-secondary px-container-padding py-stack-sm flex items-center gap-4 hover:text-primary transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+<span class="font-display text-body-lg">Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="ml-sidebar-width flex-1 flex flex-col h-screen relative bg-surface-dim">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="flex justify-between items-center h-16 px-container-padding border-b border-outline-variant bg-surface sticky top-0 z-40">
+<div class="flex items-center gap-container-padding w-1/2">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container border border-outline-variant rounded-full py-2 pl-10 pr-4 focus:outline-none focus:border-primary text-body-md transition-all" placeholder="Search mail..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="p-2 text-secondary hover:bg-surface-variant rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:bg-surface-variant rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-primary/20 cursor-pointer active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="Close up professional portrait of a high-level corporate executive in a dark tailored suit. The lighting is dramatic and moody, utilizing deep shadows and golden highlights that match the Aureate brand aesthetic. The background is a blurred, high-end office interior with subtle amber bokeh lights, conveying a sense of elite professionalism and calm authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATue2R2ZE4I9Rx7JKsmvgwcY4TM0yBt63RuDtyC_IHx1QmbYjGsA1V6bBulTKuE6lW9uyZKcjQYCQoYDB8ED19_hqdXTs0zValgKGsR6wVaR3R0ViaWzIKjwdmiwPsdwNHVBSER0lMT0KBHVlzd5l2rfYqQltcjxId277zeVeGtk60cIKuceFf4hAyTm_QOFZyJVLbmGD_drXzn3Z3vNB8TjrQZWQwhXFTcdYgPci9uFILEkUCOPPGJCVkia9krNOg81Mm-pso6xQ"/>
+</div>
+</div>
+</header>
+<!-- Compose Container (Bento/Card Layout) -->
+<div class="flex-1 overflow-y-auto p-gutter lg:p-container-padding flex justify-center">
+<div class="w-full max-w-5xl h-full flex flex-col">
+<!-- Atmospheric Header -->
+<div class="mb-stack-lg flex justify-between items-end">
+<div>
+<h2 class="font-display text-headline-lg text-on-surface">New Message</h2>
+<p class="text-secondary-fixed-dim text-body-md font-light">Drafting from your executive account</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">close_fullscreen</span></button>
+<button class="p-2 text-secondary hover:text-error transition-colors"><span class="material-symbols-outlined">close</span></button>
+</div>
+</div>
+<!-- Main Compose Pane -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl flex-1 flex flex-col shadow-2xl relative overflow-hidden">
+<!-- Header Inputs -->
+<div class="divide-y divide-outline-variant/30">
+<div class="flex items-center px-container-padding py-stack-md group">
+<label class="w-20 text-secondary text-label-sm font-bold uppercase tracking-widest opacity-60">To</label>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface text-body-lg placeholder:text-outline/40" placeholder="executive.recipient@aureate.com" type="text"/>
+<div class="flex gap-stack-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-label-sm text-primary hover:underline">Cc</button>
+<button class="text-label-sm text-primary hover:underline">Bcc</button>
+</div>
+</div>
+<div class="flex items-center px-container-padding py-stack-md">
+<label class="w-20 text-secondary text-label-sm font-bold uppercase tracking-widest opacity-60">Subject</label>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface text-body-lg font-medium placeholder:text-outline/40" placeholder="Quarterly Growth Strategic Overview" type="text"/>
+</div>
+</div>
+<!-- Toolbar -->
+<div class="px-container-padding py-2 bg-surface-container-highest/30 flex items-center gap-gutter border-b border-outline-variant/30">
+<div class="flex items-center gap-2 border-r border-outline-variant/50 pr-4">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">format_bold</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">format_italic</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">format_underlined</span></button>
+</div>
+<div class="flex items-center gap-2 border-r border-outline-variant/50 pr-4">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">link</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">attach_file</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">image</span></button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">format_quote</span></button>
+</div>
+<div class="ml-auto flex items-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">schedule_send</span></button>
+</div>
+</div>
+<!-- Body Content -->
+<div class="flex-1 p-container-padding overflow-y-auto">
+<textarea class="w-full h-full bg-transparent border-none focus:ring-0 text-on-surface text-body-lg resize-none leading-relaxed placeholder:text-outline/20 font-light" placeholder="Type your executive summary here..."></textarea>
+</div>
+<!-- Action Footer -->
+<div class="p-container-padding border-t border-outline-variant/30 bg-surface-container-low flex justify-between items-center">
+<div class="flex items-center gap-gutter">
+<button class="bg-primary hover:bg-surface-tint text-on-primary font-bold px-8 py-3 rounded-lg shadow-lg shadow-primary/10 transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+                                Send Message
+                            </button>
+<button class="text-secondary hover:text-on-surface p-2 transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="text-label-xs text-outline italic">Saved to drafts 2m ago</span>
+<div class="h-1.5 w-1.5 rounded-full bg-primary/40 animate-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Side Panel Suggestions (Bento Style) -->
+<div class="mt-gutter grid grid-cols-1 md:grid-cols-3 gap-gutter pb-stack-lg">
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 hover:border-primary/30 transition-colors group cursor-pointer">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h4 class="text-label-sm font-bold text-on-surface uppercase tracking-wider">Aureate AI</h4>
+</div>
+<p class="text-body-md text-secondary leading-tight">Summarize your message for a faster executive review.</p>
+</div>
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 hover:border-primary/30 transition-colors group cursor-pointer">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h4 class="text-label-sm font-bold text-on-surface uppercase tracking-wider">Readability</h4>
+</div>
+<p class="text-body-md text-secondary leading-tight">Your current message has a high professional clarity score.</p>
+</div>
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30 hover:border-primary/30 transition-colors group cursor-pointer">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">encrypted</span>
+<h4 class="text-label-sm font-bold text-on-surface uppercase tracking-wider">Security</h4>
+</div>
+<p class="text-body-md text-secondary leading-tight">End-to-end encryption is active for this communication.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- WebGL Background Element (Subtle atmosphere) -->
+<div class="absolute inset-0 -z-10 opacity-20 pointer-events-none">
+
+</div>
+</main>
+<script>
+        // Micro-interactions for the compose screen
+        document.querySelectorAll('input, textarea').forEach(element => {
+            element.addEventListener('focus', () => {
+                element.closest('.group')?.classList.add('border-primary/40');
+            });
+            element.addEventListener('blur', () => {
+                element.closest('.group')?.classList.remove('border-primary/40');
+            });
+        });
+
+        // Toggle focus state visual for the main card
+        const composeTextArea = document.querySelector('textarea');
+        const mainPane = document.querySelector('.bg-surface-container-low');
+        
+        composeTextArea.addEventListener('focus', () => {
+            mainPane.classList.add('ring-1', 'ring-primary/20');
+        });
+        
+        composeTextArea.addEventListener('blur', () => {
+            mainPane.classList.remove('ring-1', 'ring-primary/20');
+        });
+    </script>
+</body></html>

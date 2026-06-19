@@ -1,0 +1,52 @@
+appId: dev.kairosend.app
+productName: Kairosend
+copyright: Copyright © Kairosend contributors
+directories:
+  output: release
+  buildResources: build
+# Ship the compiled Next.js app + the Electron entry together.
+files:
+  - electron/**/*
+  - .next/**/*
+  - public/**/*
+  - package.json
+  - "!**/.DS_Store"
+  - "!**/*.map"
+
+# Next.js is served by a local server inside the packaged app.
+extraMetadata:
+  main: electron/main.js
+
+# Target Windows (NSIS installer + portable) and Linux (AppImage, deb, tar.gz).
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  artifactName: kairosend-${version}-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Kairosend
+
+linux:
+  target:
+    - target: AppImage
+      arch: [x64]
+    - target: deb
+      arch: [x64]
+    - target: tar.gz
+      arch: [x64]
+  maintainer: Kairosend contributors
+  category: Office;Network;Email
+  artifactName: kairosend-${version}-${arch}.${ext}
+
+# Local Next server is spawned by the main process — no asar unpack needed,
+# but keep node modules resolution working.
+asarUnpack:
+  - "**/*.{node,dll}"
